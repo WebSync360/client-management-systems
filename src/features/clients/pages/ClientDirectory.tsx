@@ -10,13 +10,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import PageLoader from "@/components/shared/PageLoader";
 
-/**
- * STRATEGY: High-Density Command Surface
- * -------------------------------------
- * The directory prioritizes "Actionable Visibility." 
- * We use an 8-column grid for the table to ensure alignment 
- * across varying viewports.
- */
 export default function ClientDirectory() {
   const { data: clients, isLoading, error } = useClients();
 
