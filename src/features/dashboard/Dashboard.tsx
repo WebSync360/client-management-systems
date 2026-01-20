@@ -62,14 +62,67 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <Card className="lg:col-span-2 border-brand-100/50 shadow-soft">
-          <CardHeader>
-            <CardTitle className="text-sm font-bold text-text-primary">Engagement Velocity</CardTitle>
+        <Card className="lg:col-span-2 border-brand-100/50 shadow-soft overflow-hidden bg-white/50 backdrop-blur-sm">
+          <CardHeader className="flex flex-row items-start justify-between pb-10">
+            <div className="space-y-1">
+              <CardTitle className="text-sm font-bold text-text-primary tracking-tight">Engagement Velocity</CardTitle>
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] text-text-muted font-bold uppercase tracking-widest">Growth Index</span>
+                <span className="flex items-center text-[9px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded-full">
+                  +12.4%
+                </span>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="flex items-center gap-1.5">
+                <div className="h-1.5 w-1.5 rounded-full bg-brand-600 shadow-[0_0_8px_rgba(var(--brand-600),0.4)]" />
+                <span className="text-[10px] text-text-muted font-bold uppercase tracking-tighter">Current Period</span>
+              </div>
+            </div>
           </CardHeader>
-          <CardContent>
-            <div className="h-[300px] w-full flex flex-col items-center justify-center border-2 border-dashed border-brand-50 rounded-xl bg-app/20">
-              <Activity className="h-10 w-10 text-brand-200 mb-2" />
-              <p className="text-sm text-text-muted font-medium">Activity visualization initializing...</p>
+          
+          <CardContent className="relative">
+            {/* BACKGROUND GRID LINES - Adds professional depth */}
+            <div className="absolute inset-x-6 top-0 bottom-8 flex flex-col justify-between pointer-events-none">
+              {[...Array(4)].map((_, i) => (
+                <div key={i} className="w-full border-t border-brand-100/30 border-dashed" />
+              ))}
+            </div>
+
+            <div className="relative h-[220px] w-full flex items-end justify-between gap-3 px-2">
+              {[
+                { month: 'Oct', value: 45 },
+                { month: 'Nov', value: 72 },
+                { month: 'Dec', value: 60 },
+                { month: 'Jan', value: 85 },
+                { month: 'Feb', value: 48 },
+                { month: 'Mar', value: 92 },
+              ].map((data) => (
+                <div key={data.month} className="flex-1 flex flex-col items-center gap-4 group">
+                  {/* BAR CONTAINER */}
+                  <div className="relative w-full h-full flex items-end justify-center px-1">
+                    {/* INVISIBLE HITBOX FOR BETTER HOVER UX */}
+                    <div className="absolute inset-0 z-10 cursor-pointer" />
+                    
+                    {/* THE ACTUAL BAR */}
+                    <div 
+                      className="w-full bg-brand-100/40 rounded-t-[4px] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:bg-brand-600 group-hover:scale-x-105 group-hover:shadow-lg origin-bottom relative"
+                      style={{ height: `${data.value}%` }}
+                    >
+                      {/* TOOLTIP - Precision Engineered */}
+                      <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-brand-900 text-white text-[10px] py-1.5 px-2.5 rounded-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 font-bold shadow-xl z-20 pointer-events-none">
+                        {data.value}%
+                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-brand-900 rotate-45" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* LABEL */}
+                  <span className="text-[10px] font-bold text-text-muted/60 group-hover:text-brand-700 transition-colors uppercase tracking-widest">
+                    {data.month}
+                  </span>
+                </div>
+              ))}
             </div>
           </CardContent>
         </Card>
