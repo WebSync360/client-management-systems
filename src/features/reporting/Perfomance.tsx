@@ -14,7 +14,7 @@ export default function PerformanceHub() {
   return (
     <div className="space-y-10 animate-in fade-in slide-in-from-bottom-3 duration-700">
       
-      {/* 1. STRATEGIC HEADER: Context over Content */}
+      {/* 1. STRATEGIC HEADER */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-brand-100 pb-8">
         <div>
           <Badge variant="outline" className="mb-3 border-brand-200 text-brand-700 uppercase tracking-widest text-[9px] font-black">
@@ -61,8 +61,9 @@ export default function PerformanceHub() {
         ))}
       </div>
 
-      {/* 3. THE "CONVERSION FUNNEL" VISUALIZATION (Structural Originality) */}
+      {/* 3. FUNNEL & INSIGHTS GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* PIPELINE DISTRIBUTION */}
         <Card className="lg:col-span-2 border-none shadow-soft overflow-hidden bg-white">
           <CardHeader className="flex flex-row items-center justify-between bg-slate-50/50 border-b border-slate-100">
             <CardTitle className="text-xs font-black uppercase tracking-widest text-text-primary">Pipeline Distribution</CardTitle>
@@ -75,7 +76,7 @@ export default function PerformanceHub() {
                 { stage: "Qualified Prospects", count: 212, width: "65%", color: "bg-brand-300" },
                 { stage: "Proposal Sent", count: 94, width: "35%", color: "bg-brand-500" },
                 { stage: "Closed-Won", count: 58, width: "20%", color: "bg-brand-700" },
-              ].map((step, i) => (
+              ].map((step) => (
                 <div key={step.stage} className="flex items-center gap-6 group">
                   <div className="w-32 text-[10px] font-bold text-text-muted uppercase truncate">{step.stage}</div>
                   <div className="flex-1 h-10 relative">
@@ -93,7 +94,7 @@ export default function PerformanceHub() {
           </CardContent>
         </Card>
 
-        {/* 4. ANOMALY DETECTION / INSIGHTS (The "Senior" Touch) */}
+        {/* HEURISTIC ANALYSIS */}
         <Card className="border-none bg-brand-900 text-white shadow-2xl">
           <CardHeader>
             <CardTitle className="text-xs font-black uppercase tracking-widest text-brand-400">Heuristic Analysis</CardTitle>
@@ -114,4 +115,17 @@ export default function PerformanceHub() {
                 <ArrowUpRight className="h-4 w-4" />
                 <span className="text-[10px] font-bold uppercase tracking-widest">Efficiency Alert</span>
               </div>
-              <p className="text-
+              <p className="text-sm font-medium leading-relaxed">
+                Stagnation in <span className="italic">Negotiation</span> stage for <span className="text-amber-400 font-bold">4 deals</span> exceeding 15 days.
+              </p>
+            </div>
+            
+            <button className="w-full py-4 bg-brand-600 rounded-xl text-xs font-black uppercase tracking-widest hover:bg-brand-500 transition-all shadow-lg shadow-brand-600/20">
+              Export Strategy PDF
+            </button>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}
