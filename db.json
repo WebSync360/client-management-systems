@@ -20,6 +20,69 @@
       "company": "Horizon Labs",
       "email": "m.wright@horizon.edu",
       "status": "lead"
+    },
+    {
+      "id": "4",
+      "name": "Emily Davis",
+      "company": "Quantum Solutions",
+      "email": "emily@quantum.io",
+      "status": "active"
+    },
+    {
+      "id": "5",
+      "name": "Liam O'Connor",
+      "company": "Vertex Innovations",
+      "email": "liam@vertex.io",
+      "status": "lead"
+    },
+    {
+      "id": "6",
+      "name": "Isabella Rossi",
+      "company": "Apex Technologies",
+      "email": "isabella@apex.io",
+      "status": "archived"
+    },
+    {
+      "id": "7",
+      "name": "Noah Kim",
+      "company": "Summit Enterprises",
+      "email": "noah@summit.io",
+      "status": "closed"
+    },
+    {
+      "id": "8",
+      "name": "Olivia Martinez",
+      "company": "Pinnacle Systems",
+      "email": "olivia@pinnacle.io",
+      "status": "lead"
+    },
+    {
+      "id": "9",
+      "name": "Ethan Patel",
+      "company": "Crest Innovations",
+      "email": "ethan@crest.io",
+      "status": "lead"
+    },
+    {
+      "id": "10",
+      "name": "Sophia Nguyen",
+      "company": "Vertex Solutions",
+      "email": "sophia@vertex.io",
+      "status": "closed"
+    },
+    {
+      "id": "11",
+      "name": "James Wilson",
+      "company": "Summit Dynamics",
+      "email": "james@summit.io",
+      "status": "negotiation"
+    },
+    {
+      "id": "12",
+      "name": "Mia Garcia",
+      "company": "Pinnacle Ventures",
+      "email": "mia@pinnacle.io",
+      "status": "active"
     }
   ]
 }
