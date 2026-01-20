@@ -62,67 +62,72 @@ export default function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <Card className="lg:col-span-2 border-brand-100/50 shadow-soft overflow-hidden bg-white/50 backdrop-blur-sm">
-          <CardHeader className="flex flex-row items-start justify-between pb-10">
+        <Card className="lg:col-span-2 border-brand-100/50 shadow-soft overflow-hidden bg-white">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
             <div className="space-y-1">
-              <CardTitle className="text-sm font-bold text-text-primary tracking-tight">Engagement Velocity</CardTitle>
-              <div className="flex items-center gap-2">
-                <span className="text-[10px] text-text-muted font-bold uppercase tracking-widest">Growth Index</span>
-                <span className="flex items-center text-[9px] font-bold text-green-600 bg-green-50 px-1.5 py-0.5 rounded-full">
-                  +12.4%
-                </span>
-              </div>
+              <CardTitle className="text-sm font-bold text-text-primary uppercase tracking-tight">Engagement Velocity</CardTitle>
+              <p className="text-[10px] text-text-muted font-medium">Network activity & lead momentum</p>
             </div>
-            <div className="flex gap-4">
-              <div className="flex items-center gap-1.5">
-                <div className="h-1.5 w-1.5 rounded-full bg-brand-600 shadow-[0_0_8px_rgba(var(--brand-600),0.4)]" />
-                <span className="text-[10px] text-text-muted font-bold uppercase tracking-tighter">Current Period</span>
-              </div>
+            <div className="flex items-center gap-2 px-2 py-1 bg-brand-50 rounded-lg">
+              <TrendingUp className="h-3 w-3 text-brand-600" />
+              <span className="text-[10px] font-bold text-brand-700">+14.2%</span>
             </div>
           </CardHeader>
-          
-          <CardContent className="relative">
-            {/* BACKGROUND GRID LINES - Adds professional depth */}
-            <div className="absolute inset-x-6 top-0 bottom-8 flex flex-col justify-between pointer-events-none">
-              {[...Array(4)].map((_, i) => (
-                <div key={i} className="w-full border-t border-brand-100/30 border-dashed" />
-              ))}
-            </div>
 
-            <div className="relative h-[220px] w-full flex items-end justify-between gap-3 px-2">
-              {[
-                { month: 'Oct', value: 45 },
-                { month: 'Nov', value: 72 },
-                { month: 'Dec', value: 60 },
-                { month: 'Jan', value: 85 },
-                { month: 'Feb', value: 48 },
-                { month: 'Mar', value: 92 },
-              ].map((data) => (
-                <div key={data.month} className="flex-1 flex flex-col items-center gap-4 group">
-                  {/* BAR CONTAINER */}
-                  <div className="relative w-full h-full flex items-end justify-center px-1">
-                    {/* INVISIBLE HITBOX FOR BETTER HOVER UX */}
-                    <div className="absolute inset-0 z-10 cursor-pointer" />
-                    
-                    {/* THE ACTUAL BAR */}
-                    <div 
-                      className="w-full bg-brand-100/40 rounded-t-[4px] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:bg-brand-600 group-hover:scale-x-105 group-hover:shadow-lg origin-bottom relative"
-                      style={{ height: `${data.value}%` }}
-                    >
-                      {/* TOOLTIP - Precision Engineered */}
-                      <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-brand-900 text-white text-[10px] py-1.5 px-2.5 rounded-lg opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 font-bold shadow-xl z-20 pointer-events-none">
-                        {data.value}%
-                        <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-brand-900 rotate-45" />
+          <CardContent className="pt-6">
+            <div className="relative h-[200px] w-full group">
+              {/* THE CURVE (SVG) */}
+              <svg className="w-full h-full" viewBox="0 0 600 200" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="rgb(var(--brand-600))" stopOpacity="0.3" />
+                    <stop offset="100%" stopColor="rgb(var(--brand-600))" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                
+                {/* AREA FILL */}
+                <path
+                  d="M0,160 C50,160 100,80 150,100 C200,120 250,40 300,60 C350,80 400,20 450,40 C500,60 550,140 600,120 L600,200 L0,200 Z"
+                  fill="url(#gradient)"
+                  className="animate-in fade-in slide-in-from-bottom-4 duration-1000"
+                />
+                
+                {/* THE LINE */}
+                <path
+                  d="M0,160 C50,160 100,80 150,100 C200,120 250,40 300,60 C350,80 400,20 450,40 C500,60 550,140 600,120"
+                  fill="none"
+                  stroke="rgb(var(--brand-600))"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  className="drop-shadow-md"
+                />
+
+                {/* INTERACTIVE NODES */}
+                {[
+                  { x: 150, y: 100, val: "72" },
+                  { x: 300, y: 60, val: "85" },
+                  { x: 450, y: 40, val: "92" }
+                ].map((node, i) => (
+                  <g key={i} className="cursor-pointer group/node">
+                    <circle 
+                      cx={node.x} cy={node.y} r="6" 
+                      className="fill-white stroke-brand-600 stroke-2 transition-all group-hover/node:r-8" 
+                    />
+                    <foreignObject x={node.x - 20} y={node.y - 35} width="40" height="25">
+                      <div className="bg-brand-900 text-white text-[9px] font-bold rounded px-1 py-0.5 text-center opacity-0 group-hover/node:opacity-100 transition-opacity">
+                        {node.val}%
                       </div>
-                    </div>
-                  </div>
+                    </foreignObject>
+                  </g>
+                ))}
+              </svg>
 
-                  {/* LABEL */}
-                  <span className="text-[10px] font-bold text-text-muted/60 group-hover:text-brand-700 transition-colors uppercase tracking-widest">
-                    {data.month}
-                  </span>
-                </div>
-              ))}
+              {/* X-AXIS LABELS */}
+              <div className="flex justify-between mt-4 px-1">
+                {['Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar'].map((m) => (
+                  <span key={m} className="text-[10px] font-bold text-text-muted uppercase tracking-widest">{m}</span>
+                ))}
+              </div>
             </div>
           </CardContent>
         </Card>
