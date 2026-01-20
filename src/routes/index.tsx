@@ -1,24 +1,12 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import MainLayout from "@/layouts/MainLayout";
+import PageLoader from "@/components/shared/PageLoader"; // Import the externalized loader
 
 const Dashboard = lazy(() => import("@/features/dashboard/Dashboard"));
 const ClientDirectory = lazy(() => import("@/features/clients/pages/ClientDirectory"));
 const ClientDetail = lazy(() => import("@/features/clients/pages/ClientDetail"));
 const KanbanBoard = lazy(() => import("@/features/pipeline/pages/KanbanBoard"));
-
-function PageLoader() {
-  return (
-    <div className="flex h-[60vh] w-full items-center justify-center">
-      <div className="flex flex-col items-center gap-4">
-        <div className="h-8 w-8 animate-spin rounded-full border-2 border-brand-500 border-t-transparent" />
-        <span className="text-xs font-medium text-brand-600 uppercase tracking-widest animate-pulse">
-          Initializing Workspace...
-        </span>
-      </div>
-    </div>
-  );
-}
 
 export const router = createBrowserRouter([
   {
