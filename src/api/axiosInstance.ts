@@ -2,14 +2,14 @@ import axios, { AxiosError, type InternalAxiosRequestConfig } from "axios";
 import { toast } from "sonner";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api",
+  baseURL: "/api", 
   timeout: 10000,
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// 1. REQUEST INTERCEPTOR
+// 1. REQUEST INTERCEPTOR: Auth Injection
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = localStorage.getItem("token");
@@ -21,38 +21,44 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// 2. RESPONSE INTERCEPTOR
+// 2. RESPONSE INTERCEPTOR: Global Error Orchestration
 api.interceptors.response.use(
-  (response) => response.data,
+  (response) => {
+    // Standardizing the response structure (returning data directly)
+    return response.data;
+  },
   (error: AxiosError) => {
     const status = error.response?.status;
-    // Extracting message for dynamic feedback
     const serverMessage = (error.response?.data as { message?: string })?.message;
-    const fallbackMessage = "An unexpected error occurred";
-    const displayMessage = serverMessage || fallbackMessage;
+    const displayMessage = serverMessage || "An unexpected error occurred";
+
+    if (!error.response) {
+      toast.error("Network connection lost. Check your backend server.");
+      return Promise.reject(error);
+    }
 
     switch (status) {
       case 401:
         localStorage.removeItem("token");
-        toast.error(serverMessage || "Session expired. Please log in again.");
-        // Use replace to avoid back-button loops
+        toast.error("Session expired. Redirecting...");
         window.location.replace("/login");
         break;
       
       case 403:
-        toast.error(displayMessage || "Access denied.");
+        toast.error("Insufficient permissions for this action.");
+        break;
+
+      case 404:
+        // We handle 404s quietly or with a toast depending on UX preference
+        console.error("Resource not found:", error.config?.url);
         break;
 
       case 500:
-        toast.error("Critical Server Error. Support has been alerted.");
+        toast.error("Server-side error. Our team has been notified.");
         break;
 
       default:
-        if (!status) {
-          toast.error("Network connection lost. Retrying...");
-        } else {
-          toast.error(displayMessage);
-        }
+        toast.error(displayMessage);
     }
 
     return Promise.reject(error);

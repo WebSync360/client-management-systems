@@ -1,0 +1,25 @@
+{
+  "clients": [
+    {
+      "id": "1",
+      "name": "Alex Rivera",
+      "company": "Stellar Dynamics",
+      "email": "alex@stellar.io",
+      "status": "active"
+    },
+    {
+      "id": "2",
+      "name": "Sarah Chen",
+      "company": "Nexus Venture",
+      "email": "sarah@nexus.com",
+      "status": "negotiation"
+    },
+    {
+      "id": "3",
+      "name": "Marcus Wright",
+      "company": "Horizon Labs",
+      "email": "m.wright@horizon.edu",
+      "status": "lead"
+    }
+  ]
+}
