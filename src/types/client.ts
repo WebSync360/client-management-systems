@@ -1,20 +1,23 @@
-export type ClientStatus = 'lead' | 'active' | 'inactive' | 'onboarding';
+export type ClientStatus = 'active' | 'lead' | 'inactive' | 'onboarding' | 'churned';
 
 export interface Client {
   id: string;
   name: string;
   company: string;
   email: string;
+  phone: string;
   status: ClientStatus;
-  value: number;        // Monthly revenue
-  assignedTo: string;   // Employee Name
-  lastContact: string;  // ISO Date string
+  value: number;            // Annual/Monthly Contract Value
+  assignedTo: string;       // Internal account manager name
+  lastContacted: string;    // ISO Date
+  createdAt: string;        // ISO Date
+  tags: string[];           // e.g., ["Enterprise", "High-Value"]
   avatar?: string;
 }
 
 export interface ClientStats {
   totalClients: number;
-  activeDeals: number;
-  monthlyRevenue: number;
-  conversionRate: number;
+  activeRevenue: number;
+  pendingDeals: number;
+  churnRate: string;
 }
