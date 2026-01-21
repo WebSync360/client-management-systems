@@ -27,7 +27,7 @@ export default function SystemSettings() {
         </div>
         <Button className="bg-brand-900 hover:bg-black text-white px-6 gap-2 shadow-lg shadow-brand-900/10">
           <Save className="h-4 w-4" />
-          Commit Changes.......
+          Commit Changes......
         </Button>
       </div>
 
