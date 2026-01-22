@@ -83,6 +83,83 @@
       "company": "Pinnacle Ventures",
       "email": "mia@pinnacle.io",
       "status": "active"
+    },
+    {
+      "id": "13",
+      "name": "Benjamin Lee",
+      "company": "Crest Labs",
+      "email": "benjamin@crest.io",
+      "status": "archived"
+    },  
+    {
+      "id": "14",
+      "name": "Charlotte Brown",
+      "company": "Apex Dynamics",
+      "email": "charlotte@apex.io",
+      "status": "lead"
+    },
+    {
+      "id": "15",
+      "name": "Lucas Smith",
+      "company": "Horizon Enterprises",
+      "email": "lucas@horizon.io",
+      "status": "active"
+    },
+    {
+      "id": "16",
+      "name": "Amelia Johnson",
+      "company": "Quantum Ventures",
+      "email": "amelia@quantum.io",
+      "status": "active"
+    },
+    {
+      "id": "17",
+      "name": "Henry Thompson",
+      "company": "Nexus Labs",
+      "email": "henry@nexus.io",
+      "status": "active"
+    },
+    {
+      "id": "18",
+      "name": "Evelyn White",
+      "company": "Stellar Innovations",
+      "email": "evelyn@stellar.io",
+      "status": "active"
+    },
+    {
+      "id": "19",
+      "name": "Alexander Harris",
+      "company": "Vertex Dynamics",
+      "email": "alexander@vertex.io",
+      "status": "active"
+    },
+    {
+      "id": "20",
+      "name": "Sofia Clark",
+      "company": "Crest Enterprises",
+      "email": "sofia@crest.io",
+      "status": "active"
+    },
+    {
+      "id": "21",
+      "name": "Daniel Lewis",
+      "company": "Summit Labs",
+      "email": "daniel@summit.io",
+      "status": "active"
+    },
+    {
+      "id": "22",
+      "name": "Grace Walker",
+      "company": "Pinnacle Dynamics",
+      "email": "grace@pinnacle.io",
+      "status": "active"
+    },
+    {
+      "id": "23",
+      "name": "Matthew Hall",
+      "company": "Apex Enterprises",
+      "email": "matthew@apex.io",
+      "status": "active"
     }
   ]
 }

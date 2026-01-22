@@ -54,3 +54,24 @@ export function useUpdateClientStatus() {
     }
   });
 }
+
+export function useCreateClient() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (newClient: Omit<Client, "id" | "createdAt" | "lastContacted">) => {
+      const data = await api.post("/clients", newClient);
+      return data as unknown as Client;
+    },
+    onSuccess: (createdClient) => {
+      queryClient.setQueryData(["clients", "list"], (old: Client[] | undefined) => 
+        old ? [createdClient, ...old] : [createdClient]
+      );
+      toast.success("New client onboarded");
+    },
+    onError: (error: AxiosError<ApiErrorData>) => {
+      const message = error.response?.data?.message || "Creation failed";
+      toast.error(message);
+    }
+  });
+}
